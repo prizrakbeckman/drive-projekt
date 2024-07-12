@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: driveprojekt-deployment
+  labels:
+    app: driveprojekt
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: driveprojekt
+  template:
+    metadata:
+      labels:
+        app: driveprojekt
+    spec:
+      containers:
+        - name: driveprojekt
+          image: "destinationDockerRepo/driveprojekt:latest"  # Replace with your actual image path
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: regcred #in case of private repo and secret is needed.
